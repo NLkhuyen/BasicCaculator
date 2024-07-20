@@ -2,7 +2,7 @@
 
 A calculator written in C#, supporting expression calculation and simple function.
 
-<img src="Docs/Images/ScreenShot2024-07-20 164147.png" alt="Calculator Screenshot" width="450px" />
+<img src="BasicCaculator/Docs/Image/ScreenShot2024-07-20%20164147.png" alt="Calculator Screenshot" width="450px" />
 
 ## Features
 Standard Calculator functionality which offers basic operations.
