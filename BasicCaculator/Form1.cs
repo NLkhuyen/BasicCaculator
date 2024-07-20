@@ -216,7 +216,7 @@ namespace BasicCaculator
             var btn = sender as Button;
 
             // 2番目が初期値を設定する。
-            this.numberDisplay.Text = BigInteger.Zero.ToString();
+            this.numberDisplay.Text = Decimal.Zero.ToString();
             this.operand2 = string.Empty;
 
             this.buttonClicked = btn == null ? string.Empty : Text;
