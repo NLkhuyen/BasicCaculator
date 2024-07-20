@@ -30,5 +30,8 @@
 
         // ゼロの文字列
         public const string DIVDED_BY_ZERO_ERROR = "ERROR DIV BY ZERO";
+
+        // 最大桁数
+        public const int NUMBER_MAX_LENGTH = 20;
     }
 }

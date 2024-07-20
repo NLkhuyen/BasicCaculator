@@ -51,6 +51,12 @@ namespace BasicCaculator
             // クリックしたボタンを取得するため。
             var btn = sender as Button;
 
+            // 桁数を間ドルする。
+            if (numberDisplay.Text.Length >= ContanstVariable.NUMBER_MAX_LENGTH)
+            {
+                return;
+            }
+
             // 先の計算した後、自動的に結果とかを削除するため。
             if (result != Decimal.Zero && operation == ContanstVariable.EQUAL_SYMBOL)
             {
