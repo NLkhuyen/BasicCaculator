@@ -55,6 +55,23 @@
             tableLayoutButton.SuspendLayout();
             SuspendLayout();
             // 
+            // numberDisplay
+            // 
+            numberDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numberDisplay.BackColor = Color.Black;
+            numberDisplay.BorderStyle = BorderStyle.FixedSingle;
+            numberDisplay.Enabled = false;
+            numberDisplay.Font = new Font("Segoe UI", 12F);
+            numberDisplay.ForeColor = Color.White;
+            numberDisplay.Location = new Point(15, 11);
+            numberDisplay.Margin = new Padding(4);
+            numberDisplay.MaxLength = 20;
+            numberDisplay.Name = "numberDisplay";
+            numberDisplay.Size = new Size(370, 29);
+            numberDisplay.TabIndex = 0;
+            numberDisplay.Text = "0";
+            numberDisplay.TextAlign = HorizontalAlignment.Right;
+            // 
             // tableLayoutButton
             // 
             tableLayoutButton.ColumnCount = 5;
@@ -85,7 +102,7 @@
             tableLayoutButton.Controls.Add(buttonPlus, 3, 3);
             tableLayoutButton.Controls.Add(buttonMinus, 4, 3);
             tableLayoutButton.Controls.Add(buttonEqual, 4, 4);
-            tableLayoutButton.Location = new Point(15, 80);
+            tableLayoutButton.Location = new Point(15, 47);
             tableLayoutButton.Name = "tableLayoutButton";
             tableLayoutButton.RowCount = 5;
             tableLayoutButton.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
@@ -429,33 +446,16 @@
             buttonEqual.UseVisualStyleBackColor = false;
             buttonEqual.Click += ButtonEqual_Click;
             // 
-            // numberDisplay
-            // 
-            numberDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            numberDisplay.BackColor = Color.Black;
-            numberDisplay.BorderStyle = BorderStyle.FixedSingle;
-            numberDisplay.Enabled = false;
-            numberDisplay.Font = new Font("Segoe UI", 12F);
-            numberDisplay.ForeColor = Color.White;
-            numberDisplay.Location = new Point(15, 44);
-            numberDisplay.Margin = new Padding(4);
-            numberDisplay.MaxLength = 20;
-            numberDisplay.Name = "numberDisplay";
-            numberDisplay.Size = new Size(370, 29);
-            numberDisplay.TabIndex = 0;
-            numberDisplay.Text = "0";
-            numberDisplay.TextAlign = HorizontalAlignment.Right;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(398, 450);
+            ClientSize = new Size(398, 418);
             Controls.Add(tableLayoutButton);
             Controls.Add(numberDisplay);
             ForeColor = Color.White;
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "Form1";
             tableLayoutButton.ResumeLayout(false);

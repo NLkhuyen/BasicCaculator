@@ -5,7 +5,7 @@ using BasicCaculator.Utility;
 namespace BasicCaculator
 {
     /// <summary>
-    /// 
+    /// 画面のメーイン
     /// </summary>
     public partial class Form1 : Form
     {
@@ -44,13 +44,13 @@ namespace BasicCaculator
         /// <summary>
         /// 数字ボタンをクックするイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void NumberButton_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
             var btn = sender as Button;
-            
+
             // 先の計算した後、自動的に結果とかを削除するため。
             if (result != Decimal.Zero && operation == ContanstVariable.EQUAL_SYMBOL)
             {
@@ -88,15 +88,15 @@ namespace BasicCaculator
                 }
             }
 
-            this.buttonClicked = btn == null?string.Empty:Text;
+            this.buttonClicked = btn == null ? string.Empty : Text;
             operationClicked = false;
         }
 
         /// <summary>
         /// 操作ボタンをクックするイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void OperationButton_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -139,8 +139,8 @@ namespace BasicCaculator
         /// <summary>
         /// 結果を計算するイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonEqual_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -163,7 +163,7 @@ namespace BasicCaculator
             var calculateResult = f1Logic.CalculateMethod(operation, num1, num2);
 
             // ゼロを分割するチェック。
-            if (!String.IsNullOrWhiteSpace(calculateResult)) 
+            if (!String.IsNullOrWhiteSpace(calculateResult))
             {
                 decimal.TryParse(calculateResult, out result);
             }
@@ -182,8 +182,8 @@ namespace BasicCaculator
         /// <summary>
         /// 計算したことを削除するイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonAC_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -202,8 +202,8 @@ namespace BasicCaculator
         /// <summary>
         /// 2番目のオペランドを削除するイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonC_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -219,8 +219,8 @@ namespace BasicCaculator
         /// <summary>
         /// M+ボタンをクリックするイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonMPlus_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -248,8 +248,8 @@ namespace BasicCaculator
         /// <summary>
         /// M-ボタンをクリックするイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonMMinus_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。
@@ -277,8 +277,8 @@ namespace BasicCaculator
         /// <summary>
         /// MRCボタンをクリックするイベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">クリックしたボタン</param>
+        /// <param name="e">イベント情報</param>
         private void ButtonMRC_Click(object sender, EventArgs e)
         {
             // クリックしたボタンを取得するため。

@@ -1,5 +1,4 @@
-﻿using Xunit;
-using BasicCaculator;
+﻿using BasicCaculator;
 using BasicCaculator.Utility;
 using System.Globalization;
 

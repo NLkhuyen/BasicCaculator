@@ -7,10 +7,10 @@ namespace BasicCaculator
         /// <summary>
         /// 計算するイベント
         /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="num1"></param>
-        /// <param name="num2"></param>
-        /// <returns></returns>
+        /// <param name="operation">演算子</param>
+        /// <param name="num1">1番目のオペランド</param>
+        /// <param name="num2">2番目のオペランド</param>
+        /// <returns>計算した結果</returns>
         public string CalculateMethod(string operation, decimal num1, decimal num2)
         {
             decimal calculatedResult = Decimal.Zero;
