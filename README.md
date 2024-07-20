@@ -1,29 +1,30 @@
 # BasicCaculator
 
-A calculator written in C#, supporting expression calculation and simple function.
+C# で記述された電卓で、式の計算と簡単な関数をサポートしています。
 
 <img src="BasicCaculator/Docs/Image/ScreenShot2024-07-20%20164147.png" alt="Calculator Screenshot" width="450px" />
 
-## Features
-Standard Calculator functionality which offers basic operations.
+## 機能
+基本的な操作を提供する標準の電卓機能。
 
-## How to use
+## 使用方法
 
-UI just like another simple calculator.
+他のシンプルな電卓と同じ UI。
 
-This project used only library that .net 8 core provided.
+このプロジェクトでは、.net 8 core が提供するライブラリのみを使用しました。
 
-## Getting started
-Prerequisites:
-- Your computer should be running Windows 11, build 22000 or newer.
-- Install the latest version of [Visual Studio](https://developer.microsoft.com/en-us/windows/downloads) (the free community edition is sufficient).
-    - Install the C# .net 8.0.
-- Get the code:
-    ```
-    git clone https://github.com/NLkhuyen/BasicCaculator.git
-    ```
-- Open [src\BasicCaculator.sln](/src/BasicCaculator.sln) in Visual Studio to build and run the Calculator app.
+## はじめに
+前提条件:
+- コンピューターで Windows 11、ビルド 22000 以降を実行している必要があります。
+- [Visual Studio](https://developer.microsoft.com/en-us/windows/downloads) の最新バージョンをインストールします (無料のコミュニティ エディションで十分です)。
+- C# .net 8.0 をインストールします。
+- コードを取得します:
+```
+git clone https://github.com/NLkhuyen/BasicCaculator.git
+```
+- Visual Studio で [src\BasicCaculator.sln](/src/BasicCaculator.sln) を開き、電卓アプリをビルドして実行します。
 
 ## UnitTest
-- Simple Unit test with xUnit.
-- After import into Visual Studio, just run test to unit test logic method.
+- xUnit を使用したシンプルな単体テスト。
+- Visual Studio にインポートした後、単体テスト ロジック メソッドに対してテストを実行するだけです。
+# Dentaku C# de kijutsu sa reta dentaku de,-shiki no kei
