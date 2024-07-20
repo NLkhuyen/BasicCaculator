@@ -140,6 +140,7 @@
             buttonMPlus.TabIndex = 0;
             buttonMPlus.Text = "M+";
             buttonMPlus.UseVisualStyleBackColor = false;
+            buttonMPlus.Click += ButtonMPlus_Click;
             // 
             // buttonMMinus
             // 
@@ -154,6 +155,7 @@
             buttonMMinus.TabIndex = 1;
             buttonMMinus.Text = "M-";
             buttonMMinus.UseVisualStyleBackColor = false;
+            buttonMMinus.Click += ButtonMMinus_Click;
             // 
             // buttonMRC
             // 
@@ -168,6 +170,7 @@
             buttonMRC.TabIndex = 2;
             buttonMRC.Text = "MRC";
             buttonMRC.UseVisualStyleBackColor = false;
+            buttonMRC.Click += ButtonMRC_Click;
             // 
             // buttonSeven
             // 
@@ -212,7 +215,7 @@
             buttonNine.TabIndex = 5;
             buttonNine.Text = "9";
             buttonNine.UseVisualStyleBackColor = false;
-            buttonNine.Click += NumberButton_Click ;
+            buttonNine.Click += NumberButton_Click;
             // 
             // buttonFour
             // 
@@ -360,7 +363,7 @@
             buttonTimes.Name = "buttonTimes";
             buttonTimes.Size = new Size(54, 51);
             buttonTimes.TabIndex = 17;
-            buttonTimes.Text = "X";
+            buttonTimes.Text = "*";
             buttonTimes.UseVisualStyleBackColor = false;
             buttonTimes.Click += OperationButton_Click;
             // 

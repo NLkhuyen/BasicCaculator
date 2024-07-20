@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicCaculator", "BasicCaculator\BasicCaculator.csproj", "{6084BD4F-5B2A-45A3-AE48-8B56F2F0263A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicCaculator", "BasicCaculator\BasicCaculator.csproj", "{6084BD4F-5B2A-45A3-AE48-8B56F2F0263A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBasicCaculatorXunit", "TestBasicCaculatorXunit\TestBasicCaculatorXunit.csproj", "{B314901C-02F9-4FCC-9335-5322E7D192C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6084BD4F-5B2A-45A3-AE48-8B56F2F0263A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6084BD4F-5B2A-45A3-AE48-8B56F2F0263A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6084BD4F-5B2A-45A3-AE48-8B56F2F0263A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B314901C-02F9-4FCC-9335-5322E7D192C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B314901C-02F9-4FCC-9335-5322E7D192C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B314901C-02F9-4FCC-9335-5322E7D192C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B314901C-02F9-4FCC-9335-5322E7D192C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

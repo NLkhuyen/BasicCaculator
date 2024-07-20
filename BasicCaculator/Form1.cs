@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Globalization;
+using System.Numerics;
 using BasicCaculator.Utility;
 
 namespace BasicCaculator
@@ -23,8 +24,14 @@ namespace BasicCaculator
         // 結果の変数
         decimal result = Decimal.Zero;
 
-        //　操作ボタンがクリックされたフラグ
+        // 操作ボタンがクリックされたフラグ
         bool operationClicked = false;
+
+        // 押したボンタン名
+        string buttonClicked = string.Empty;
+
+        // ロジッククラスを作成
+        Form1Logic f1Logic = new Form1Logic();
 
         /// <summary>
         /// フォーム初期コンストラクタ
@@ -43,7 +50,7 @@ namespace BasicCaculator
         {
             // クリックしたボタンを取得するため。
             var btn = sender as Button;
-
+            
             // 先の計算した後、自動的に結果とかを削除するため。
             if (result != Decimal.Zero && operation == ContanstVariable.EQUAL_SYMBOL)
             {
@@ -80,6 +87,8 @@ namespace BasicCaculator
                     numberDisplay.Text += btn.Text;
                 }
             }
+
+            this.buttonClicked = btn == null?string.Empty:Text;
             operationClicked = false;
         }
 
@@ -94,7 +103,7 @@ namespace BasicCaculator
             var btn = sender as Button;
 
             // 連計算する場合、先の計算をやる事
-            if (operation != null && operation != ContanstVariable.EQUAL_SYMBOL)
+            if (!String.IsNullOrWhiteSpace(operation) && operation != ContanstVariable.EQUAL_SYMBOL)
             {
                 ButtonEqual_Click(sender, e);
             }
@@ -114,8 +123,8 @@ namespace BasicCaculator
                 case ContanstVariable.OPERATIONS.TIMES:
                     operation = ContanstVariable.OPERATIONS.TIMES;
                     break;
-                case ContanstVariable.OPERATIONS.DEVIDE:
-                    operation = ContanstVariable.OPERATIONS.DEVIDE;
+                case ContanstVariable.OPERATIONS.DIVIDE:
+                    operation = ContanstVariable.OPERATIONS.DIVIDE;
                     break;
                 default:
                     break;
@@ -123,6 +132,7 @@ namespace BasicCaculator
 
             // テキストボックスに出す。
             numberDisplay.Text = result.ToString();
+            this.buttonClicked = btn == null ? string.Empty : Text;
             operationClicked = true;
         }
 
@@ -133,13 +143,16 @@ namespace BasicCaculator
         /// <param name="e"></param>
         private void ButtonEqual_Click(object sender, EventArgs e)
         {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
             // 2番目のオペランドを設定する。
             operand2 = numberDisplay.Text;
 
             // 文字列から数字に変換する。
             decimal num1, num2;
-            decimal.TryParse(operand1, out num1);
-            decimal.TryParse(operand2, out num2);
+            decimal.TryParse(operand1, CultureInfo.InvariantCulture, out num1);
+            decimal.TryParse(operand2, CultureInfo.InvariantCulture, out num2);
 
             // 2番目を設定しなくて、イコールをクリックする時、何もやりません。
             if (operationClicked)
@@ -147,42 +160,23 @@ namespace BasicCaculator
                 return;
             }
 
-            // 計算する。
-            switch (operation)
-            {
-                case ContanstVariable.OPERATIONS.PLUS:
-                    result = num1 + num2;
-                    numberDisplay.Text = result.ToString();
-                    break;
-                case ContanstVariable.OPERATIONS.MINUS:
-                    result = num1 - num2;
-                    numberDisplay.Text = result.ToString();
-                    break;
-                case ContanstVariable.OPERATIONS.TIMES:
-                    result = num1 * num2;
-                    numberDisplay.Text = result.ToString();
-                    break;
-                case ContanstVariable.OPERATIONS.DEVIDE:
+            var calculateResult = f1Logic.CalculateMethod(operation, num1, num2);
 
-                    // ゼロを分割するチェック。
-                    if (num2 != 0)
-                    {
-                        result = num1 / num2;
-                        numberDisplay.Text = result.ToString();
-                    }
-                    else
-                    {
-                        numberDisplay.Text = "ERROR DIV BY ZERO";
-                    }
-                    result = num1 / num2;
-                    numberDisplay.Text = result.ToString();
-                    break;
-                default:
-                    break;
+            // ゼロを分割するチェック。
+            if (!String.IsNullOrWhiteSpace(calculateResult)) 
+            {
+                decimal.TryParse(calculateResult, out result);
             }
+            else
+            {
+                calculateResult = ContanstVariable.DIVDED_BY_ZERO_ERROR;
+            }
+
+            numberDisplay.Text = calculateResult;
 
             // イコールのオペレーションをマークする。
             operation = ContanstVariable.EQUAL_SYMBOL;
+            this.buttonClicked = btn == null ? string.Empty : Text;
         }
 
         /// <summary>
@@ -192,12 +186,17 @@ namespace BasicCaculator
         /// <param name="e"></param>
         private void ButtonAC_Click(object sender, EventArgs e)
         {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
             // 初期値を再セットする。
             this.numberDisplay.Text = Decimal.Zero.ToString();
             this.operand1 = string.Empty;
             this.operand2 = string.Empty;
             this.operation = string.Empty;
             this.result = Decimal.Zero;
+
+            this.buttonClicked = btn == null ? string.Empty : Text;
         }
 
         /// <summary>
@@ -207,9 +206,96 @@ namespace BasicCaculator
         /// <param name="e"></param>
         private void ButtonC_Click(object sender, EventArgs e)
         {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
             // 2番目が初期値を設定する。
             this.numberDisplay.Text = BigInteger.Zero.ToString();
             this.operand2 = string.Empty;
+
+            this.buttonClicked = btn == null ? string.Empty : Text;
+        }
+
+        /// <summary>
+        /// M+ボタンをクリックするイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonMPlus_Click(object sender, EventArgs e)
+        {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
+            // 最初から設定する。
+            if (String.IsNullOrWhiteSpace(this.memoryInput))
+            {
+                this.memoryInput = this.numberDisplay.Text;
+            }
+            else
+            {
+                // 文字列から数字に変換する。
+                decimal num1, num2;
+                decimal.TryParse(memoryInput, CultureInfo.InvariantCulture, out num1);
+                decimal.TryParse(numberDisplay.Text, CultureInfo.InvariantCulture, out num2);
+
+                // メモリーに値を入れる。
+                this.memoryInput = (num1 + num2).ToString();
+            }
+
+            this.buttonClicked = btn == null ? string.Empty : Text;
+        }
+
+        /// <summary>
+        /// M-ボタンをクリックするイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonMMinus_Click(object sender, EventArgs e)
+        {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
+            // 最初から設定する。
+            if (String.IsNullOrWhiteSpace(this.memoryInput))
+            {
+                this.memoryInput = this.numberDisplay.Text;
+            }
+            else
+            {
+                // 文字列から数字に変換する。
+                decimal num1, num2;
+                decimal.TryParse(memoryInput, out num1);
+                decimal.TryParse(numberDisplay.Text, out num2);
+
+                // メモリーに値を入れる。
+                this.memoryInput = (num1 - num2).ToString();
+            }
+
+            this.buttonClicked = btn == null ? string.Empty : Text;
+        }
+
+        /// <summary>
+        /// MRCボタンをクリックするイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonMRC_Click(object sender, EventArgs e)
+        {
+            // クリックしたボタンを取得するため。
+            var btn = sender as Button;
+
+            if (this.buttonClicked.Equals(btn?.Text))
+            {
+                // メモリーのあたいを削除する
+                this.memoryInput = string.Empty;
+                this.numberDisplay.Text = Decimal.Zero.ToString();
+            }
+            else
+            {
+                this.numberDisplay.Text = this.memoryInput;
+            }
+
+            this.buttonClicked = btn == null ? string.Empty : Text;
         }
     }
 }
