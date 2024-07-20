@@ -1,6 +1,7 @@
 ﻿using BasicCaculator;
 using BasicCaculator.Utility;
 using System.Globalization;
+using System.Numerics;
 
 namespace TestBasicCaculatorXunit
 {
@@ -57,35 +58,41 @@ namespace TestBasicCaculatorXunit
             Assert.Equal(expected, returnValue);
         }
         [Theory]
-        [InlineData(4, 3, 12)]
-        [InlineData(20.3, 3.7, 75.11)]
-        [InlineData(-309, -101, 31209)]
-        [InlineData(9, -9, -81)]
-        [InlineData(0, 3, 0)]
-        public void ShouldMultiplyTwoNumbers(decimal x, decimal y, decimal expected)
+        [InlineData("4", "3", "12")]
+        [InlineData("20.3", "3.7", "75.11")]
+        [InlineData("-309", "-101", "31209")]
+        [InlineData("1000000000000000", "2222222222222222", "2.222222222222222e+30")]
+        [InlineData("9", "-9", "-81")]
+        [InlineData("0", "3", "0")]
+        public void ShouldMultiplyTwoNumbers(string x, string y, string expected)
         {
+            var tempX = decimal.Parse(x, CultureInfo.InvariantCulture);
+
+            var tempY = decimal.Parse(y, CultureInfo.InvariantCulture);
+
             //Act
-            string actual = form1Logic.CalculateMethod(ContanstVariable.OPERATIONS.TIMES, x, y);
+            string actual = form1Logic.CalculateMethod(ContanstVariable.OPERATIONS.TIMES, tempX, tempY);
 
             actual = String.IsNullOrWhiteSpace(actual) ? "0" : actual;
 
-            // リターンデータが数字に変換する。
-            decimal returnValue = decimal.Parse(actual);
-
             //Assert
-            Assert.Equal(expected, returnValue);
+            Assert.Equal(expected.ToLower(), actual.ToLower());
         }
 
         [Theory]
-        [InlineData(4, 4, 1)]
-        [InlineData(20.3, 0, 0)]
-        [InlineData(-300, -100, 3)]
-        [InlineData(9, -9, -1)]
-        [InlineData(0, 3, 0)]
-        public void ShouldDivideTwoNumbers(decimal x, decimal y, decimal expected)
+        [InlineData("4", "4", 1)]
+        [InlineData("20.3", "0", 0)]
+        [InlineData("-300", "-100", 3)]
+        [InlineData("9", "-9", -1)]
+        [InlineData("0", "3", 0)]
+        public void ShouldDivideTwoNumbers(string x, string y, decimal expected)
         {
+            var tempX = decimal.Parse(x, CultureInfo.InvariantCulture);
+
+            var tempY = decimal.Parse(y, CultureInfo.InvariantCulture);
+
             //Act
-            string actual = form1Logic.CalculateMethod(ContanstVariable.OPERATIONS.DIVIDE, x, y);
+            string actual = form1Logic.CalculateMethod(ContanstVariable.OPERATIONS.DIVIDE, tempX, tempY);
 
             actual = String.IsNullOrWhiteSpace(actual) ? "0" : actual;
 

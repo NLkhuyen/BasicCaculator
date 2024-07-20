@@ -10,19 +10,19 @@ namespace BasicCaculator
     public partial class Form1 : Form
     {
         // 1番目のオペランドを格納する文字列
-        string operand1 = BigInteger.Zero.ToString();
+        string operand1 = decimal.Zero.ToString();
 
         // 2番目のオペランドを格納する文字列
-        string operand2 = BigInteger.Zero.ToString();
+        string operand2 = decimal.Zero.ToString();
 
         // M+を格納する変数
-        string memoryInput = BigInteger.Zero.ToString();
+        string memoryInput = decimal.Zero.ToString();
 
         // 変数を格納する演算子
         string operation = string.Empty;
 
         // 結果の変数
-        decimal result = Decimal.Zero;
+        string result = decimal.Zero.ToString();
 
         // 操作ボタンがクリックされたフラグ
         bool operationClicked = false;
@@ -58,14 +58,14 @@ namespace BasicCaculator
             }
 
             // 先の計算した後、自動的に結果とかを削除するため。
-            if (result != Decimal.Zero && operation == ContanstVariable.EQUAL_SYMBOL)
+            if (!result.Equals(decimal.Zero) && operation == ContanstVariable.EQUAL_SYMBOL)
             {
                 ButtonAC_Click(sender, e);
             }
             // 連計算するとき、テキストボックスの値を削除するため。
-            else if (result != Decimal.Zero && operationClicked)
+            else if (!result.Equals(decimal.Zero) && operationClicked)
             {
-                numberDisplay.Text = BigInteger.Zero.ToString();
+                numberDisplay.Text = decimal.Zero.ToString();
             }
 
             if (btn != null)
@@ -114,8 +114,11 @@ namespace BasicCaculator
                 ButtonEqual_Click(sender, e);
             }
 
-            // 1番目のオペランドを設定する。
-            operand1 = numberDisplay.Text;
+            if (!operationClicked)
+            {
+                // 1番目のオペランドを設定する。
+                operand1 = numberDisplay.Text;
+            }
 
             // 格納する演算子を設定する。
             switch (btn?.Text)
@@ -171,7 +174,7 @@ namespace BasicCaculator
             // ゼロを分割するチェック。
             if (!String.IsNullOrWhiteSpace(calculateResult))
             {
-                decimal.TryParse(calculateResult, out result);
+                result = calculateResult;
             }
             else
             {
@@ -196,11 +199,11 @@ namespace BasicCaculator
             var btn = sender as Button;
 
             // 初期値を再セットする。
-            this.numberDisplay.Text = Decimal.Zero.ToString();
+            this.numberDisplay.Text = decimal.Zero.ToString();
             this.operand1 = string.Empty;
             this.operand2 = string.Empty;
             this.operation = string.Empty;
-            this.result = Decimal.Zero;
+            this.result = decimal.Zero.ToString();
 
             this.buttonClicked = btn == null ? string.Empty : Text;
         }
@@ -216,7 +219,7 @@ namespace BasicCaculator
             var btn = sender as Button;
 
             // 2番目が初期値を設定する。
-            this.numberDisplay.Text = Decimal.Zero.ToString();
+            this.numberDisplay.Text = decimal.Zero.ToString();
             this.operand2 = string.Empty;
 
             this.buttonClicked = btn == null ? string.Empty : Text;
@@ -294,7 +297,7 @@ namespace BasicCaculator
             {
                 // メモリーのあたいを削除する
                 this.memoryInput = string.Empty;
-                this.numberDisplay.Text = Decimal.Zero.ToString();
+                this.numberDisplay.Text = decimal.Zero.ToString();
             }
             else
             {
